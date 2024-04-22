@@ -35,10 +35,44 @@ const User = sequelize.define('users', {
     type: DataTypes.DATE,
     allowNull: false,
     defaultValue: DataTypes.NOW,
-  }
+  },
+});
+
+const Task = sequelize.define('tasks', {
+  id: {
+    type: DataTypes.BIGINT,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+  },
+  title: {
+    type: DataTypes.STRING(1000),
+    allowNull: false,
+  },
+  concluded: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
+});
+
+User.hasMany(Task, {
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION',
+});
+
+Task.belongsTo(User, {
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION',
 });
 
 module.exports = {
   sequelize,
-  User
+  User,
+  Task
 };
