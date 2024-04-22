@@ -1,7 +1,7 @@
 const express = require('express');
 const { Op, Sequelize } = require('sequelize');
 
-const { User } = require('../models');
+const { User, Task, sequelize } = require('../models');
 
 const router = express.Router();
 
@@ -18,6 +18,10 @@ router.get('/', async function (request, response) {
     const users = await User.findAll({
       where,
       // attributes: ['id', 'name', 'age']
+      include: [{
+        model: Task,
+        required: false, // left join
+      }]
     });
     response.status(200).json(users);
   } catch (err) {
@@ -80,7 +84,23 @@ router.get('/:userId', async function (request, response) {
 router.post('/', async (request, response) => {
   try {
     const body = request.body;
-    const user = await User.create(body);
+
+    const user = await sequelize.transaction(async (transaction) => {
+      let user = await User.create(body, {
+        transaction
+      });
+      user = await User.findByPk(user.id, {
+        transaction
+      });
+      await Task.create({
+        title: 'Terminar o Bootcamp',
+        userId: user.id
+      }, {
+        transaction
+      })
+      return user;
+    });
+
     response.status(201).json(user);
   } catch (err) {
     console.log(err);

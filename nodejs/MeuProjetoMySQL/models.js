@@ -34,7 +34,7 @@ const User = sequelize.define('users', {
   created_at: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: DataTypes.NOW,
+    defaultValue: Sequelize.fn('NOW')
   },
 });
 
@@ -57,7 +57,7 @@ const Task = sequelize.define('tasks', {
   created_at: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: DataTypes.NOW,
+    defaultValue: Sequelize.fn('NOW')
   },
 });
 

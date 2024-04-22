@@ -89,9 +89,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 
-  sequelize.sync({
-    force: true
-  })
+  sequelize.sync()
     .then(() => {
       console.log('Banco de dados conectado com sucesso.');
     }).catch((err) => {
