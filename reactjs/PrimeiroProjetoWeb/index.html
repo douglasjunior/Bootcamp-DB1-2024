@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primeiro Projeto Web</title>
+
+  <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/create-react-class@15.7.0/create-react-class.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    const WelcomeComponent = (props) => {
+      return React.createElement('h1', null, 'Olá, ' + props.name);
+    }
+
+    const welcomeElement = React.createElement(WelcomeComponent, {
+      name: 'Douglas'
+    });
+
+    class CounterComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          count: 0,
+        }
+      }
+      componentDidMount() {
+        setInterval(() => {
+          this.setState({
+            count: this.state.count + 1
+          });
+        }, 1000);
+      }
+      render() {
+        return React.createElement('p', null, 'Contador: ' + this.state.count);
+      }
+    }
+
+    const counterElement = React.createElement(CounterComponent);
+
+
+    const StepComponent = () => {
+      const [step, setStep] = React.useState(0);
+      const handleIncrement = () => {
+        setStep(step + 1);
+      }
+      const handleDecrement = () => {
+        setStep(step - 1);
+      }
+      return React.createElement('div', null,
+        React.createElement('button', { onClick: handleDecrement }, '-'),
+        React.createElement('span', null, 'Steps: ' + step),
+        React.createElement('button', { onClick: handleIncrement }, '+'),
+      );
+    }
+
+    const stepElement = React.createElement(StepComponent);
+
+    const myDiv = React.createElement(
+      'div', // componente
+      null, // propriedades
+      'Olá React!', // filho 0
+      welcomeElement, // filho 1
+      counterElement, // filho 2
+      stepElement, // filho 3
+      stepElement, // filho 4
+    );
+
+    ReactDOM.render(myDiv, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
