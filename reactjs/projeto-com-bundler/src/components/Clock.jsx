@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
-const Clock = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+const Clock = (props) => {
+  const [currentDate, setCurrentDate] = useState(props.startDate);
 
   // useEffect sem dependências é executado apenas no mount e unmount
   useEffect(() => {
     // mount
     const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+      setCurrentDate((previousDate) => {
+        return new Date(previousDate.getTime() + 5000);
+      });
+    }, 5000);
     return () => {
       // unmount
       clearInterval(interval);

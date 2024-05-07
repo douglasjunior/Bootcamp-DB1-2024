@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div>
-      <Clock />
+      <Clock startDate={new Date(2001, 9, 15, 20, 30, 0)} />
     </div>
   )
 }
