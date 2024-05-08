@@ -8,9 +8,9 @@ const Clock = (props) => {
     // mount
     const interval = setInterval(() => {
       setCurrentDate((previousDate) => {
-        return new Date(previousDate.getTime() + 5000);
+        return new Date(previousDate.getTime() + 1000);
       });
-    }, 5000);
+    }, 1000);
     return () => {
       // unmount
       clearInterval(interval);
