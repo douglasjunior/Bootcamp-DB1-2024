@@ -5,6 +5,7 @@ import { Button, Calendar, DatePicker } from 'antd';
 
 import Clock from './components/Clock'
 import Step from './components/Step'
+import Tasks from './components/Tasks';
 
 function App() {
   const [showStep, setShowStep] = useState(true);
@@ -13,6 +14,11 @@ function App() {
   }
   return (
     <div>
+      <Tasks />
+
+      <br />
+      <br />
+
       <Clock startDate={new Date(2001, 9, 15, 20, 30, 0)} />
 
       <br />
