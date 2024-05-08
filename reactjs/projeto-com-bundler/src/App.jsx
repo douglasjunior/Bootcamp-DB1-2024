@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+// import './App.css'
+
+import { Button, Calendar, DatePicker } from 'antd';
 
 import Clock from './components/Clock'
 import Step from './components/Step'
@@ -17,9 +19,37 @@ function App() {
 
       {showStep ? <Step /> : null}
 
-      <button onClick={handleShowHideStep}>
+      <Button onClick={handleShowHideStep}>
         Exibir/Ocultar step
-      </button>
+      </Button>
+      <Button type='primary' onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+      <Button type='primary' danger onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+      <Button type='primary' disabled={true} onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+      <Button type='primary' loading onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+      <Button type='text' onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+      <Button type='link' onClick={handleShowHideStep}>
+        Exibir/Ocultar step
+      </Button>
+
+      <br />
+      <br />
+
+      <Calendar fullscreen={false} />
+
+      <br />
+      <br />
+
+      <DatePicker />
     </div>
   )
 }
