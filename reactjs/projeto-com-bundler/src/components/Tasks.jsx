@@ -29,13 +29,17 @@ const columns = [
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const requestTasks = async () => {
     try {
+      setLoading(true);
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
       setTasks(response.data);
     } catch (err) {
       console.warn(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -48,6 +52,7 @@ const Tasks = () => {
       dataSource={tasks}
       columns={columns}
       size='small'
+      loading={loading}
     />
   )
 };
