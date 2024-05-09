@@ -1,6 +1,9 @@
-import { Table, Input } from 'antd';
+import { Table } from 'antd';
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+
+import TaskCompleted from './TaskCompleted';
+import InputText from './InputText';
 
 const columns = [
   {
@@ -22,7 +25,7 @@ const columns = [
       // return (
       //   <Checkbox checked={value} />
       // )
-      return value ? '✅' : '❌';
+      return <TaskCompleted completed={value} />;
     }
   },
 ];
@@ -59,10 +62,11 @@ const Tasks = () => {
   const renderContent = () => {
     return (
       <>
-        <Input
+        <InputText
           placeholder='Buscar tarefa por título'
           onChange={handleChange}
           value={searchValue}
+          label="Buscar"
         />
         <Table
           dataSource={tasks}
