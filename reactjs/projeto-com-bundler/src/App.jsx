@@ -13,7 +13,7 @@ function App() {
     setShowStep(!showStep);
   }
   return (
-    <div>
+    <div className='app-component'>
       <Tasks />
 
       <br />
