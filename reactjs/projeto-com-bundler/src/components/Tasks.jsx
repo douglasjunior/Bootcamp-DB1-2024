@@ -59,6 +59,16 @@ const Tasks = () => {
     setSearchValue(event.target.value);
   }
 
+  const validateSearch = (value) => {
+    if (!value) {
+      return 'Informe o termo de busca desejado.';
+    }
+    if (value.length > 20) {
+      return 'O termo de busca deve possuir até 20 caracteres';
+    }
+    return undefined;
+  }
+
   const renderContent = () => {
     return (
       <>
@@ -67,6 +77,7 @@ const Tasks = () => {
           onChange={handleChange}
           value={searchValue}
           label="Buscar"
+          validate={validateSearch}
         />
         <Table
           dataSource={tasks}
