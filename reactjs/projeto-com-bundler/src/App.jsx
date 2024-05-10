@@ -1,61 +1,25 @@
-import { useState } from 'react'
 // import './App.css'
 
-import { Button, Calendar, DatePicker } from 'antd';
-
-import Clock from './components/Clock'
-import Step from './components/Step'
-import Tasks from './components/Tasks';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import About from './pages/About';
+import Home from './pages/Home';
+import Tasks from './pages/Tasks';
 
 function App() {
-  const [showStep, setShowStep] = useState(true);
-  const handleShowHideStep = () => {
-    setShowStep(!showStep);
-  }
   return (
     <div className='app-component'>
-      <Tasks />
-
-      <br />
-      <br />
-
-      <Clock startDate={new Date(2001, 9, 15, 20, 30, 0)} />
-
-      <br />
-
-      {showStep ? <Step /> : null}
-
-      <Button onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='primary' onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='primary' danger onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='primary' disabled={true} onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='primary' loading onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='text' onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-      <Button type='link' onClick={handleShowHideStep}>
-        Exibir/Ocultar step
-      </Button>
-
-      <br />
-      <br />
-
-      <Calendar fullscreen={false} />
-
-      <br />
-      <br />
-
-      <DatePicker />
+      <BrowserRouter>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/tasks">Tarefas</Link></li>
+          <li><Link to="/about">Sobre</Link></li>
+        </ul>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

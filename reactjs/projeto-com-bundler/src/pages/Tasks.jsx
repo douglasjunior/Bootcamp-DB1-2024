@@ -2,8 +2,8 @@ import { Table } from 'antd';
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
-import TaskCompleted from './TaskCompleted';
-import InputText from './InputText';
+import TaskCompleted from '../components/TaskCompleted';
+import InputText from '../components/InputText';
 
 const columns = [
   {
