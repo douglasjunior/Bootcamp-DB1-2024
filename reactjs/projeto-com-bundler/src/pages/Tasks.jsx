@@ -1,9 +1,11 @@
-import { Table } from 'antd';
-import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Table } from 'antd';
+import axios from 'axios';
 
 import TaskCompleted from '../components/TaskCompleted';
 import InputText from '../components/InputText';
+import fakeAuth from '../utils/fake-auth';
 
 const columns = [
   {
@@ -31,6 +33,8 @@ const columns = [
 ];
 
 const Tasks = () => {
+  const navigate = useNavigate();
+
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -69,9 +73,18 @@ const Tasks = () => {
     return undefined;
   }
 
+  const handleLogout = () => {
+    fakeAuth.isAuthenticated = false;
+    navigate('/');
+  }
+
   const renderContent = () => {
     return (
       <>
+        <Button type='text' danger onClick={handleLogout}>
+          Sair
+        </Button>
+        <br />
         <InputText
           placeholder='Buscar tarefa por título'
           onChange={handleChange}
